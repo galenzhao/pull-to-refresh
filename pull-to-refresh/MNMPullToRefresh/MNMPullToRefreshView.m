@@ -179,24 +179,32 @@
     
     [super layoutSubviews];
     
-    CGSize topSize = [[topLabel_ text] sizeWithFont:[topLabel_ font]];
-    CGSize bottomSize = [[bottomLabel_ text] sizeWithFont:[bottomLabel_ font]];
+    //CGSize topSize = [[topLabel_ text] sizeWithFont:[topLabel_ font]];
+    //CGSize bottomSize = [[bottomLabel_ text] sizeWithFont:[bottomLabel_ font]];
     
-    CGRect frame = [topLabel_ frame];
-    frame.size.width = topSize.width;
-    [topLabel_ setFrame:frame];
+    //CGRect frame = [topLabel_ frame];
+    //frame.size.width = topSize.width;
+    //[topLabel_ setFrame:frame];
     
-    frame = [bottomLabel_ frame];
-    frame.size.width = bottomSize.width;
-    [bottomLabel_ setFrame:frame];
+    //frame = [bottomLabel_ frame];
+    //frame.size.width = bottomSize.width;
+    //[bottomLabel_ setFrame:frame];
     
-    UILabel *largerLabel = (topSize.width > bottomSize.width ? topLabel_ : bottomLabel_);
+    //UILabel *largerLabel = (topSize.width > bottomSize.width ? topLabel_ : bottomLabel_);
 
-    frame = [containerView_ frame];
-    frame.size.width = CGRectGetMaxX([largerLabel frame]);
-    [containerView_ setFrame:frame];
+    //frame = [containerView_ frame];
+    //frame.size.width = CGRectGetMaxX([largerLabel frame]);
+    //[containerView_ setFrame:frame];
+    containerView_.frame = CGRectMake(0, containerView_.frame.origin.y, containerView_.superview.frame.size.width, containerView_.frame.size.height);
+    //[containerView_ setCenter:CGPointMake([self center].x, [containerView_ center].y)];
+
+    [topLabel_ sizeToFit];
+    topLabel_.frame = CGRectMake((topLabel_.superview.frame.size.width-topLabel_.frame.size.width)/2.0, topLabel_.frame.origin.y, topLabel_.frame.size.width, topLabel_.frame.size.height);
+    [bottomLabel_ sizeToFit];
+    bottomLabel_.frame = CGRectMake((bottomLabel_.superview.frame.size.width-bottomLabel_.frame.size.width)/2.0, bottomLabel_.frame.origin.y, bottomLabel_.frame.size.width, bottomLabel_.frame.size.height);
     
-    [containerView_ setCenter:CGPointMake([self center].x, [containerView_ center].y)];
+    loadingActivityIndicator_.frame = CGRectMake(MIN(topLabel_.frame.origin.x, bottomLabel_.frame.origin.x)-20-loadingActivityIndicator_.frame.size.width, (loadingActivityIndicator_.superview.frame.size.height-loadingActivityIndicator_.frame.size.height)/2.0, loadingActivityIndicator_.frame.size.width, loadingActivityIndicator_.frame.size.height);
+    iconImageView_.center = loadingActivityIndicator_.center;
 }
 
 /*

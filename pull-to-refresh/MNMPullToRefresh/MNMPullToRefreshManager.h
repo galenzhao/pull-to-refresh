@@ -105,4 +105,6 @@
  */
 - (void)tableViewReloadFinishedAnimated:(BOOL)animated;
 
+- (void)relocatePullToRefreshView;
+
 @end

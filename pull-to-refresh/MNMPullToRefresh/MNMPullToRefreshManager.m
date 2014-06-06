@@ -71,6 +71,12 @@ static CGFloat const kAnimationDuration = 0.2f;
     return self;
 }
 
+- (void)relocatePullToRefreshView {
+    
+    pullToRefreshView_.frame = CGRectMake(0, pullToRefreshView_.frame.origin.y, pullToRefreshView_.superview.frame.size.width, pullToRefreshView_.frame.size.height);
+    
+}
+
 #pragma mark -
 #pragma mark Table view scroll management
 
