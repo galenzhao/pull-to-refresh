@@ -142,6 +142,7 @@ static CGFloat const kAnimationDuration = 0.2f;
         
         [pullToRefreshView_ setLastUpdateDate:[NSDate date]];
         [pullToRefreshView_ changeStateOfControl:MNMPullToRefreshViewStateIdle withOffset:CGFLOAT_MAX];
+        [self relocatePullToRefreshView];
     }];    
 }
 
@@ -152,7 +153,7 @@ static CGFloat const kAnimationDuration = 0.2f;
  * Sets the pull-to-refresh view visible or not. Visible by default
  */
 - (void)setPullToRefreshViewVisible:(BOOL)visible {
-    
+    [self relocatePullToRefreshView];
     [pullToRefreshView_ setHidden:!visible];
 }
 
